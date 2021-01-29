@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Ufo
 {
-	protected String fromGalaxy = "";
-	protected String[] crew = {};
-	protected int peopleStolen;
-	protected int maxLoad;
-	Random rnd = null;
+	private String fromGalaxy = "";
+	private String[] crew = {};
+	private int peopleStolen;
+	private int maxLoad;
+	private Random rnd = null;
 
 
 	public Ufo (String fromGalaxy, int maxLoad, String[] crew)
@@ -23,6 +23,24 @@ public class Ufo
 		this.maxLoad = maxLoad;
 	}
 
+
+	private void stealMorePeople (int range)
+	{
+		if (lookingForPeaple())
+			peopleStolen += catchPeople (range);
+	}
+	private boolean lookingForPeaple ()	{	return rnd.nextBoolean();	}
+	private int catchPeople (int range)	{	return rnd.nextInt (range); 	}
+	private void freeSomeSpecimen (int some)	{	peopleStolen -= some;	}
+
+	private void goToEarth()
+	{
+		System.out.println ("(Корабль пришельцев направляется к Земле (звучит песня злобных пришельцев).");
+	}
+	private void goHome()
+	{
+		System.out.println ("(Корабль пришельцев покидает Землю и убирается восвояси (звучит песня злобных пришельцев).");
+	}
 
 	public void beAnAlien()
 	{
@@ -42,26 +60,5 @@ public class Ufo
 
 	public int getPeopleStolen ()    {    return peopleStolen;    }
 	public int getMaxLoad ()    {    return peopleStolen;    }
-
-	public void stealMorePeople (int range)
-	{
-		if (lookingForPeaple())
-			peopleStolen += catchPeople (range);
-	}
-
-	public boolean lookingForPeaple ()	{	return rnd.nextBoolean();	}
-	public int catchPeople (int range)	{	return rnd.nextInt (range); 	}
-
-	void freeSomeSpecimen (int some)	{	peopleStolen -= some;	}
-
-	public void goToEarth()
-	{
-		System.out.println ("(Корабль пришельцев направляется к Земле (звучит песня злобных пришельцев).");
-	}
-
-	public void goHome()
-	{
-		System.out.println ("(Корабль пришельцев покидает Землю и убирается восвояси (звучит песня злобных пришельцев).");
-	}
 
 }

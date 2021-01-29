@@ -6,12 +6,12 @@ import static java.lang.Integer.MIN_VALUE;
 
 public class StaffMember
 {
-	String nameFIO;
-	String position;
-	String email;
-	String phone;
-	int salary;
-	int age;
+	private String nameFIO;
+	private String position;
+	private String email;
+	private String phone;
+	private int salary;
+	private int age;
 
 	public StaffMember (String nameFIO, String position, String email, String phone, int salary, int age)
 	{

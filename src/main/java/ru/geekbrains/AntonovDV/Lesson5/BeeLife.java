@@ -5,18 +5,30 @@ import java.util.Random;
 
 public class BeeLife
 {
-	Random rnd = null;
-	protected int positionX = 0, positionY = 0;
-	protected double    nectar = 0,
-						honey = 0,
-						honeyNeeded = 0;
-	public final double factor = 0.72;
+	private Random rnd = null;
+	private int positionX = 0, positionY = 0;
+	private double  nectar = 0,
+					honey = 0,
+					honeyNeeded = 0;
+	private final double factor = 0.72;
 
 	public BeeLife (int honeyNeeded)
 	{
 		rnd = new Random();
 		this.honeyNeeded = honeyNeeded;
 	}
+
+	private void doFlying ()
+	{
+		int deltaX = rnd.nextInt() * (rnd.nextBoolean() ? 1 : -1),
+			deltaY = rnd.nextInt() * (rnd.nextBoolean() ? 1 : -1);
+
+		positionX += deltaX;
+		positionY += deltaY;
+	}
+
+	private double peakNectar ()	{   return rnd.nextDouble();    }
+	private double makeHoney (double nectar)    {   return nectar * this.factor;    }
 
 	public void doWorking ()
 	{
@@ -29,19 +41,6 @@ public class BeeLife
 
 		System.out.println (getPosition().toString());
 	}
-
-
-	public void doFlying ()
-	{
-		int deltaX = rnd.nextInt() * (rnd.nextBoolean() ? 1 : -1),
-			deltaY = rnd.nextInt() * (rnd.nextBoolean() ? 1 : -1);
-
-		positionX += deltaX;
-		positionY += deltaY;
-	}
-
-	public double peakNectar ()	{   return rnd.nextDouble();    }
-	protected double makeHoney (double nectar)    {   return nectar * this.factor;    }
 
 	public Point getPosition()  {   return new Point (positionX, positionY);     }
 
