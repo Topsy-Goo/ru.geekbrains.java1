@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ru.geekbrains.lesson1" />
-        <module name="ru.geekbrains" />
       </profile>
     </annotationProcessing>
   </component>
