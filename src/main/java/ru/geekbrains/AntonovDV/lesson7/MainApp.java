@@ -1,5 +1,8 @@
 package ru.geekbrains.AntonovDV.lesson7;
 
+
+import static java.lang.Integer.max;
+
 public class MainApp
 {
 
@@ -60,6 +63,7 @@ public class MainApp
 			plate.info();
 
 			int bite = plate.getFood() / hungryCats; //< пусть это будут вежливые кошки (каждый будет съедать равную долю)
+			if (bite < 1) bite = 1; //< на случай, если кошек больше, чем единиц еды в тарелке.
 
 			for (Cat cat : cats)
 			{
