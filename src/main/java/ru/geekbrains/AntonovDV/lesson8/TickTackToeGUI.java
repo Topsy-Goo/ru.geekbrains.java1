@@ -7,13 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
-import java.util.Scanner;
 
 public class TickTackToeGUI extends JFrame
 {
-/** Или в графическом варианте реализовать игру "Угадай число", или доработать "Крестики-нолики"
-
-*/
 //	public static final boolean DEBUG = true;
 	protected char[][] map; //< квадратное игровое поле, поделённое на клетки (условимся считать его массивом строк).
 	static final int GF_SIDE = 420, //< 60 -- общее кратное чисел 3,4,5,6 и 10.
@@ -89,11 +85,7 @@ public class TickTackToeGUI extends JFrame
 						    turnCounter ++;
 						    jpGamefield.repaint();
 						    afterTurnCheck (DOT_AI);
-						}
-						//else if (DEBUG)	System.err.println ("ERROR @ TickTackToeGUI() : ИИ не смог сделать ход.");
-					}
-				}
-			}
+			}	}	}	}
 		});
 
 	// Верхние кнопки:
@@ -204,7 +196,7 @@ public class TickTackToeGUI extends JFrame
 			prepareMap();
 	}// gameOver ()
 
-/** Переопределяем игрока, который будет делать первый ход в следующей игре.
+/*  Переопределяем игрока, который будет делать первый ход в следующей игре.
 	Останавливаем игру, только если игровое поле чистое, чтобы пользователь не был обескуражен поведением программы.
 	Если игра в разгаре, то лучше её не прерывать на случай, если кнопка нажата по ошибке, да и первый ход уже сделан. */
 	void onAiFirstButton ()
@@ -375,63 +367,6 @@ public class TickTackToeGUI extends JFrame
 	}// buildHotLines ()
 
 
-//  Составляем строку для вывода карты на экран. Аналог метода printMap(), но более удобный для отладки
-//  (игровое поле можно будет увидеть в окне отладчика).
-	public String ToString ()
-	{
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("\n");
-		for (int i=0; i< SIZE; i++)
-			sb.append(String.format ("\t%d\t", i+1));
-
-		for (int i=0; i< SIZE; i++)
-		{
-			sb.append(String.format ("\n\n%d", i+1));
-			for (int j=0; j< SIZE; j++)
-				sb.append(String.format ("\t%c\t", map[i][j]));
-		}
-		sb.append("\n");
-		return sb.toString();
-	}
-
-	public void printMap ()	{   System.out.println (ToString ());   }
-
-
-// Вспомогательный метод. Получает от пользователя введённое число в заданном диапазоне значений.
-	protected int askInputInt (Scanner sc, int from, int upto)
-	{
-		int result = from;
-		if (from <= upto)
-		{
-			do
-			{	result = sc.nextInt();
-			}
-			while (result < from || result > upto);
-		}
-		return result;
-	}
-
-
-//  Игрок делает ход.
-	protected void playerTurn (Scanner sc)
-	{
-		int x,y;
-		do
-		{
-			System.out.printf ("Введите горизональную координату (от %d до %d) : ", 1, SIZE);
-			y = askInputInt (sc, 1, SIZE);
-			System.out.printf ("Введите вертикальальную координату (от %d до %d) : ", 1, SIZE);
-			x = askInputInt (sc, 1, SIZE);
-			if (map[x-1][y-1] == DOT_EMPTY)
-				break;
-			System.out.printf ("Клетка %d,%d уже занята. Укажите другую клетку.\n", x, y);
-		}
-		while (true);
-		map[--x][--y] = DOT_PLAYER;
-	}
-
-
 //  ИИ делает ход.
 	protected boolean aiTurn ()
 	{
@@ -479,14 +414,6 @@ public class TickTackToeGUI extends JFrame
 						return true;
 					}
 		}
-/*		if (DEBUG)
-		{
-			if (turnCounter < SIZE*SIZE)
-				System.out.println ("Что-то пошло не так в aiTurn().");
-			if (turnCounter >= SIZE*SIZE || !gameIsOn)
-				System.out.printf ("Несвоевременный вызов aiTurn() : turnCounter = %d; SIZE = %d; gameIsOn = %b.\n",
-									turnCounter, SIZE, gameIsOn);
-		}//*/
 		return false;
 	}// aiTurn ()
 
@@ -570,8 +497,7 @@ public class TickTackToeGUI extends JFrame
 			}
 		}
 		return index;
-	}
-
+	}// checkHotLines ()
 
 
 //  Метод проверяет массив arrch на наличие в нём НЕПРЕРЫВНОЙ последовательности из символов dot.
@@ -613,18 +539,16 @@ public class TickTackToeGUI extends JFrame
 		int counter = 0;
 
 		if (arrch != null)
-		for (int i=0; i<arrch.length; i++)
-		{
-			if (arrch[i] == dot)
-				counter++;
-		}
+			for (char c : arrch)
+				if (c == dot)
+					counter++;
 		return counter;
 	} // checkLine ()
 
 
 	public static void main(String[] args)
 	{
-		TickTackToeGUI ttt = new TickTackToeGUI();
+		new TickTackToeGUI();
 	}// main ()
 
 }// class TickTackToeGUI
