@@ -1,2 +1,5 @@
 # Project exclude paths
 /target/
+/desktop.ini
+/pom.xml
+/src/main/java/META-INF/MANIFEST.MF
