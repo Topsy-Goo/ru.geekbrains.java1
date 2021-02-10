@@ -1,4 +1,4 @@
-package ru.geekbrains.AntonovDV.lesson7;
+package ru.geekbrains.AntonovDV.java1.lesson7;
 
 import static java.lang.Integer.min;
 

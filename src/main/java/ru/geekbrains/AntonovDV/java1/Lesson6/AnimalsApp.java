@@ -1,8 +1,8 @@
-package ru.geekbrains.AntonovDV.Lesson6;
+package ru.geekbrains.AntonovDV.java1.Lesson6;
 
-import ru.geekbrains.AntonovDV.Lesson6.Animals.Animal;
-import ru.geekbrains.AntonovDV.Lesson6.Animals.Cat;
-import ru.geekbrains.AntonovDV.Lesson6.Animals.Dog;
+import ru.geekbrains.AntonovDV.java1.Lesson6.Animals.Animal;
+import ru.geekbrains.AntonovDV.java1.Lesson6.Animals.Cat;
+import ru.geekbrains.AntonovDV.java1.Lesson6.Animals.Dog;
 
 public class AnimalsApp
 {

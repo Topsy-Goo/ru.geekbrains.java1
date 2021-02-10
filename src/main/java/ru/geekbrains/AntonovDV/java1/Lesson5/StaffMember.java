@@ -1,7 +1,6 @@
-package ru.geekbrains.AntonovDV.Lesson5;
+package ru.geekbrains.AntonovDV.java1.Lesson5;
 
 import static java.lang.Integer.MAX_VALUE;
-import static java.lang.Integer.MIN_VALUE;
 
 
 public class StaffMember

@@ -1,6 +1,5 @@
-package ru.geekbrains.AntonovDV.Lesson4;
+package ru.geekbrains.AntonovDV.java1.Lesson4;
 
-import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
 

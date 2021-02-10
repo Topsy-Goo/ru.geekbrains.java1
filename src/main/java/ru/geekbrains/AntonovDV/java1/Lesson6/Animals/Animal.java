@@ -1,4 +1,4 @@
-package ru.geekbrains.AntonovDV.Lesson6.Animals;
+package ru.geekbrains.AntonovDV.java1.Lesson6.Animals;
 
 public abstract class Animal
 {

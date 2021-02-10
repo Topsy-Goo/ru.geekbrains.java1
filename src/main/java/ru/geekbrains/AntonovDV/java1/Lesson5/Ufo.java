@@ -1,4 +1,4 @@
-package ru.geekbrains.AntonovDV.Lesson5;
+package ru.geekbrains.AntonovDV.java1.Lesson5;
 
 import java.util.Random;
 

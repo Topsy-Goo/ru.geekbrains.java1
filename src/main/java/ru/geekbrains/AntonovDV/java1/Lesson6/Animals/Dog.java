@@ -1,19 +1,19 @@
-package ru.geekbrains.AntonovDV.Lesson6.Animals;
+package ru.geekbrains.AntonovDV.java1.Lesson6.Animals;
 
 // Типы доступа расставляем из расчёта, что все классы-наследники будут располагаться внутри одного пакета.
-public class Cat extends Animal
+public class Dog extends Animal
 {
-	static int catsCounter = 0; // Все классы-наследники также будут кошками, поэтому тип доступа != private.
+	static int dogsCounter = 0;
 
-	public Cat (double age, String name)
+	public Dog (double age, String name)
 	{
 		super (false, age, name);
-		maxRunDistance = 200;
-		maxSwimDistance = 0;
-		catsCounter ++;
+		maxRunDistance = 500;
+		maxSwimDistance = 10;
+		dogsCounter ++;
 	}
 
-	public static int getCatsCounter()  {   return catsCounter;  } // static позволит проверить количество кошек даже при полном отсутствии таковых.
+	public static int getDogsCounter() {   return dogsCounter;  }
 
 	@Override public void run (int distance)
 	{
@@ -33,10 +33,10 @@ public class Cat extends Animal
 		System.out.printf ("%s проплыл(а) %d метров%s.\n", name, distance, ((maxSwimDistance > 0) ? "" : " (т.к. не умеет плавать)"));
 	}
 
-	@Override public Cat animalGone ()
+	@Override public Dog animalGone ()
 	{
 		super.animalGone();
-		catsCounter --;
+		dogsCounter --;
 		return null;
 	}
 

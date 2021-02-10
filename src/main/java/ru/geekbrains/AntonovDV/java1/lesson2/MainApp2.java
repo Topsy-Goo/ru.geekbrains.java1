@@ -1,4 +1,4 @@
-package ru.geekbrains.AntonovDV.lesson2;
+package ru.geekbrains.AntonovDV.java1.lesson2;
 
 import java.util.Arrays;
 
