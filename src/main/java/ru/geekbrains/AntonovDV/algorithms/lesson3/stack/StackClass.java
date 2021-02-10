@@ -1,5 +1,6 @@
 package ru.geekbrains.AntonovDV.algorithms.lesson3.stack;
 
+
 public class StackClass<E> implements StackInterface<E>
 {
 
@@ -12,58 +13,37 @@ public class StackClass<E> implements StackInterface<E>
         this.data = (E[]) new Object[maxSize];
     }
 
-    @Override public void push(E value)
+    @Override public boolean push (E value)
     {
-        data[size++] = value;
-    }
+        if (isFull()) return false;
+        else
+        {
+            data[size++] = value;
+            return true;
+        }
+    }// push ()
 
-    @Override public E pop()
-    {
-        return data[--size];
-    }
+    @Override public E pop ()    {   return (!isEmpty()) ? data[--size] : null;   }
+    @Override public E peek ()   {   return (!isEmpty()) ? data[size -1] : null;   }
+    @Override public int size () {   return size;   }
 
-    @Override public E peek()
-    {
-        return data[size - 1];
-    }
+    @Override public boolean isEmpty () {   return size == 0;   }
+    @Override public boolean isFull ()  {   return size == data.length;   }
+    @Override public void display ()    {   System.out.println(this);   }
 
-    @Override public int size()
-    {
-        return size;
-    }
-
-    @Override public boolean isEmpty()
-    {
-        return size == 0;
-    }
-
-    @Override public boolean isFull()
-    {
-        return size == data.length;
-    }
-
-    @Override public void display()
-    {
-        System.out.println(this);
-    }
-
-    @SuppressWarnings("DuplicatedCode")
-    @Override public String toString()
+    @Override public String toString ()
     {
         StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < size - 1; i++)
+        int i = 0;
+        while (i < size)
         {
-            sb.append(data[i]);
-            sb.append(", ");
+            sb.append(data[i++]);
+            if (i < size)
+                sb.append(", ");
         }
-        if (size > 0)
-        {
-            sb.append(data[size - 1]);
-        }
-        sb.append("]");
-
+        sb.append(']');
         return sb.toString();
-    }
+    }// toString ()
 
 
 }// class StackClass

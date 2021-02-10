@@ -3,7 +3,7 @@ package ru.geekbrains.AntonovDV.algorithms.lesson3.stack;
 public interface StackInterface<E>
 {
 
-    void push(E value);
+    boolean push(E value);
 
     E pop();
 

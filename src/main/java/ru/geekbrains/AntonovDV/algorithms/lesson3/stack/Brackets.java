@@ -9,59 +9,49 @@ public class Brackets
                     public static void main(String[] args)
                     {
                         testStack();
-                    }
+                    ]
             """;
 
-    private static final Map<Character, Character> BRACKETS_MAP = Map.of('{', '}', '[', ']', '(', ')');
-
-    public static void main(String[] args)
+    public static void main (String[] args)
     {
-        new Brackets().check(EXAMPLE);
-    }
+        new Brackets().check (EXAMPLE);
+    }// main ()
 
-    public void check(String text)
+    public void check (String text)
     {
         StackInterface<Character> stack = new StackClass<>(text.length());
-
-        for (int i = 0; i < text.length(); i++)
+        int i = 0;
+        for (; i < text.length(); i++)
         {
             char currentChar = text.charAt(i);
-            checkChar(stack, currentChar, i);
+            if (!checkChar (stack, currentChar))
+                System.err.println("Error: " + currentChar + " at " + i + "\n"+EXAMPLE.substring(0, i+1)+"<<<");
         }
-
         if (!stack.isEmpty())
-        {
-            System.err.println("Error: missing right delimiter");
-        }
-    }
+            System.err.println("Error: missing right delimiter" + "\n"+EXAMPLE.substring(0, i)+"<<<");
+    }// check ()
 
-    private void checkChar (StackInterface<Character> stack, Character currentChar, int currentCharPosition)
+    private boolean checkChar (StackInterface<Character> stack, Character character)
     {
-        switch (currentChar)
+        boolean boolOk = true;
+        switch (character)
         {
-        case '{':
-        case '[':
-        case '(':
-            stack.push(currentChar);
+        case '{':    stack.push ('}');
+            break;
+        case '[':    stack.push (']');
+            break;
+        case '(':    stack.push (')');
             break;
         case '}':
         case ']':
-        case ')':
-            if (stack.isEmpty())
-            {
-                System.err.println("Error: " + currentChar + " at " + currentCharPosition);
-                break;
-            }
-
-            Character lastOpenedBracket = stack.pop();
-            if (!BRACKETS_MAP.get(lastOpenedBracket).equals(currentChar))
-            {
-                System.err.println("Error: " + currentChar + " at " + currentCharPosition);
-            }
+        case ')':    boolOk = character.equals (stack.peek()); //< (в случае ошибки peek вернёт null)
+            if (boolOk)
+                stack.pop();
             break;
         default:
             break;
         }
+        return boolOk;
     }// checkChar ()
 
 

@@ -7,7 +7,8 @@ public interface QueueInterface<E>
 
     E remove ();
 
-    E peekHead ();
+    E peek ();  // Я переименовал этот метод из peekHead(), чтобы его название не совпадало
+                // с похожим методом интерфейса DequeInterface
 
     int size ();
 
