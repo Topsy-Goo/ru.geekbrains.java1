@@ -70,3 +70,5 @@ public class DequeClass<E> extends QueueClass<E> implements DequeInterface<E>
 
 
 }// class DequeClass
+
+//

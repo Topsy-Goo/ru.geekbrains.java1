@@ -25,3 +25,5 @@ public interface DequeInterface<E>
     boolean isFull();
 
 }// interface DequeInterface
+
+//
