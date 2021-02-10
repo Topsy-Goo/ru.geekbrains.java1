@@ -19,5 +19,3 @@ public interface StackInterface<E>
 
 
 }// interface StackInterface
-
-//

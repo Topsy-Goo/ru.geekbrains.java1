@@ -69,4 +69,3 @@ public class QueueClass<E> implements QueueInterface<E>
 
 }// class QueueClass
 
-//

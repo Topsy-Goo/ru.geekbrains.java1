@@ -97,5 +97,3 @@ public class QueuePriority<E extends Comparable<? super E>> implements QueueInte
     }// toString ()
 
 }// class QueuePriority
-
-//
