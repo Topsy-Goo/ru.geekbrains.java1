@@ -17,11 +17,17 @@ public interface DequeInterface<E>
 
     E peekTail ();
 
-
+//----------- следующие методы пригодятся при использовании Deque в качестве обычной очереди:
     int size();
 
     boolean isEmpty();
 
     boolean isFull();
+
+    E peek();
+
+    E remove ();
+
+    boolean insert (E value);
 
 }// interface DequeInterface

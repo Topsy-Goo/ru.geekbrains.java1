@@ -3,11 +3,11 @@ package ru.geekbrains.AntonovDV.algorithms.lesson3_2.queue;
 public class QueueClass<E> implements QueueInterface<E>
 {
     private static final int INITIAL_HEAD = 0;
-    protected final E[] data;
-    protected int size;
+    private final E[] data;
+    private int size;
 
-    protected int head;
-    protected int tail;
+    private int head;
+    private int tail;
 
     @SuppressWarnings("unchecked")
     public QueueClass (int maxSize)
