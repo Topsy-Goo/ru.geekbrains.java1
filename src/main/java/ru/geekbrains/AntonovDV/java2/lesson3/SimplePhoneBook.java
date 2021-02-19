@@ -65,4 +65,11 @@ public class SimplePhoneBook
     }// toString ()
 
 
+    public void displayRecords ()
+    {
+        Object[] oo = book.entrySet().toArray();
+        for (Object o : oo)
+            System.out.println (o);
+    }// displayRecords ()
+
 }// class SimplePhoneBook

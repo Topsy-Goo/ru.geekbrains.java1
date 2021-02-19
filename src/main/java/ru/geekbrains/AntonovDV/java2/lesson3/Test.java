@@ -8,8 +8,8 @@ public class Test
     public static void main (String[] args)
     {
         wordsCalculation();
-        testSimplePhoneBook();
-
+        //testSimplePhoneBook();
+        //testPhoneBook();
     }// main ()
 
 
@@ -21,6 +21,7 @@ public class Test
 
         String[] sWords = text.split ("[\\p{Space}\\p{Punct}\\p{Cntrl}]");
         Map<String, Integer> hmapWords = new LinkedHashMap<> (sWords.length, 1.0F);
+        List<String> list = new ArrayList<> (sWords.length); // исследоваие
 
         for (String key : sWords)
         {
@@ -33,9 +34,16 @@ public class Test
                 hmapWords.replace (key, value +1);
             else
                 hmapWords.put (key, 1);
+            list.add (key); // исследоваие
         }
-        System.out.printf ("\nИсходная строка:\n«%s»\n\nРезультат работы программы:\n%s\n",
-                           text, hmapWords);
+        list.sort (new Comparator<String> () { // исследоваие
+                       @Override public int compare (String o1, String o2)
+                       {
+                           return o1.compareTo (o2);
+                       }
+                   });
+        System.out.printf ("\nИсходная строка:\n«%s»\n\nРезультат работы программы:\n%s\n", text, hmapWords);
+        System.out.println ("\nSorted ArrayList:\n"+list);
     }// wordsCalculation ()
 
 
@@ -69,6 +77,43 @@ public class Test
 
         System.out.println ("Выписка для Mike :\t" + book.get ("Mike"));
         System.out.println ("Выписка для Karl :\t" + book.get ("Karl"));
+
+        System.out.println ("\ndisplayRecords():");
+        book.displayRecords();
     }// testSimplePhoneBook ()
+
+
+    public static void testPhoneBook ()
+    {
+        String[] names =  {"Bob", "Rob", "Mike", "Poul", "Jorge", "Sam"};
+        String[] phones = {"123", "456", "0183", null, "00100", "222"};
+        PhoneBook book = new PhoneBook();
+        System.out.println ("\n"+book);
+
+        for (int i=0, n=names.length;   i<n;   i++)
+            book.add (names[i], phones[i]);
+
+        System.out.print (book);
+        book.add ("Mike", "0184");
+        book.add ("Poul", "+9999");
+        book.add ("Sam", "2222");
+        book.add ("Sam", "2222");
+        System.out.println (book);
+
+        System.out.print (book.getFormated ("Mike"));
+        System.out.println (book.getFormated ("Karl"));
+
+        System.out.println ("\ngetPhoneStrings() : ");
+        String[] ars = book.get("Mike").getPhoneStrings();
+        for (String s : ars)
+            System.out.print ("-"+ s + "-");
+
+        System.out.println ("\ngetPhoneObjects() : ");
+        Object[] aro = book.get("Mike").getPhoneObjects();
+        for (Object o : aro)
+            System.out.print ("-"+ o + "-");
+
+    }// testPhoneBook ()
+
 
 }// class Test
