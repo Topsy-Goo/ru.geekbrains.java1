@@ -1,0 +1,237 @@
+
+        //System.out.println (calcFactorial(5, 1));
+        //System.out.println (calcFactorial_tail (5, 1, 1));
+
+/*  min задаёт условие — считать ли 0! нулём или 1-цей:
+    min=1 означает, что 0! вызывает исключение;
+    min=0 означает, что 0! = 1.   */
+/*    public static int calcFactorial (int N, int min)
+    {
+        if (min < 0 || min > 1 || N < min)
+           throw new ArithmeticException ();//MyArithmeticException (" @ calcFactorial ("+N+", "+min+")\n", FACTORIAL);
+
+        return (min < N) ? calcFactorial (N-1, min) * N : 1;
+    }
+    public static int calcFactorial_tail (int N, int a, final int min)
+    {
+        if (min < 0 || min > 1 || N < min)
+           throw new ArithmeticException ();//MyArithmeticException (" @ calcFactorial_tail ("+N+", "+min+")\n", FACTORIAL);
+
+        return (min < N) ? calcFactorial_tail (N-1, a*N, min) : a;
+    }//*/
+
+
+
+public class MyArithmeticException extends ArithmeticException
+{
+    public enum ArithmeticMessage {FACTORIAL, ZERO_POWER_ZERO, MULTIPLY};
+
+    static final String msgDefault = "Некорректный парметр.",
+                        msgFactorial = msgDefault,
+                        msgZeroPowerZero = "Значение 0^0 неопределено.",
+                        msgMultiply = msgDefault;
+    private String msg = msgDefault;
+
+    public MyArithmeticException (String prefix, ArithmeticMessage msgType)
+    {
+        String s = prefix;
+        switch (msgType)
+        {
+        case ZERO_POWER_ZERO: s += msgZeroPowerZero;    break;
+        case FACTORIAL:       s += msgFactorial;        break;
+        case MULTIPLY:        s += msgMultiply;         break;
+        default: s += msgDefault;
+        }
+        msg = s;
+    }
+
+    @Override public String getMessage()
+    {
+        return msg;
+    }
+}// class MyArithmeticException
+
+
+
+   public void anagramThings (ArrayClass<Thing> ooo, final int start)
+    {
+        calls ++; //< для отладки
+        if (ooo == null || ooo.size() <= start)
+            return;
+
+        final Thing tmp = ooo.getAt(start); //< запоминаем элемент, который находится в позиции start, чтобы исключить лишние ротации
+
+        for (int i=start, n=ooo.size();   i<n;    i++)
+        {
+            anagramThings (ooo, start +1); //< шагаем по масиву от начала к концу
+            if (n-start > 1 && ooo.getAt(start+1) != tmp) //< просто уменьшаем количество перестановок в ~3 раза -- до size факториал (сравнение именно через != )
+            {
+                ooo.add (ooo.removeAt (start)); //< переставляем крайний левый элемент в конец массива
+                rearrangements ++; //< для отладки
+            }
+        }
+        if (ooo.size()-start <= 1) //< дойдя до конца массива, обрабатываем очередную перестановку
+        {
+            System.out.println (ooo +"\tc"+ calls +"/r"+ rearrangements); //< выводит текущее состояние массива
+            tryOnBackpack (ooo);
+        }
+    }// anagramObjects ()
+
+
+
+  //// (Вспомогательная.) Укороченный вариант ArrayClass.add (ArrayClass.removeAt (start)).
+  //// Подходит только для случаев, когда ротациия нужна для соседних элементов.
+  //  void swap (int i, int j)
+  //  {
+  //      Thing tmp = things.getAt(i);
+  //      things.insertAt(i++, things.getAt(j));    things.removeAt(i);
+  //      things.insertAt(j++, tmp);   things.removeAt(j);
+  //  }
+
+
+/*
+    static int thingsCount = 5;
+    static int[][] things = new int[thingsCount][];
+    static int calls = 0, rearrangements = 0, fittings = 0;  //< для отладки
+    // Переменные для задачи с рюкзаком. (Основной метод пришлось разделить на части для лучшей читаемости, а это
+    // в свою очередь потребовало создания полей класса, чтобы не передавать их в качестве параметров. Статические
+    // локальные переменные в Java почему-то запрещены. Ну и ладно… )
+    static final int capacity = 7;
+    static int maxload = 0,
+               maxprice = 0;
+    static int[][] load = null;
+//*/
+
+
+/*
+    public static void backpack_simple ()
+    {
+    // создаём массив [N][2] и заполняем его случайными значениями:
+
+        Random rnd = new Random();
+        int rangeWeight = 10,
+            rangePrice = 10;
+
+        //for (int i=0;   i < thingsCount;   i++)
+        //{
+        //    int weight = max(rnd.nextInt (rangeWeight), 1),
+        //        price = max(rnd.nextInt (rangePrice), 1);
+        //    things[i][0] = weight;
+        //    things[i][1] = price;
+        //}
+        things[0] = new int[]{9,7};
+        things[1] = new int[]{8,6};
+        things[2] = new int[]{4,1};
+        things[3] = new int[]{2,1};
+        things[4] = new int[]{1,2};
+        //things[5] = new int[]{6,5};
+        //things[6] = new int[]{7,8};
+
+        System.out.println ("\nИсходный список вещей (вес-цена): "+ displayThings (things) +
+                            String.format ("\nВместимость рюкзака: %d", capacity));
+
+    // Теперь содержательная часть задания 2.
+        anagramThings (0);
+
+        String tostringFormat =
+                "\nВ рюкзак поместились  (вес-цена): %s\n\t(общий вес %d, общая стоимость %d);" +
+                "\nвызовов %d, перестановок %d, примерок %d (%d!)";
+
+        System.out.printf (tostringFormat, displayThings (load), maxload, maxprice,
+                                           calls, rearrangements, thingsCount, fittings);
+
+    }// backpack_simple ()
+
+
+    static void anagramThings (int start)
+    {
+        calls ++; //< для отладки
+        if (things == null || start >= things.length)
+            return;
+
+        int gap = things.length - (start+1);
+        if (gap == 1)
+        {
+            System.out.println (displayThings (things));
+            tryOnBackpack ();
+            rotateThings (things, start);
+
+            System.out.println (displayThings (things));
+            tryOnBackpack ();
+            rotateThings (things, start);
+        } else
+        while (gap-- >= 0)
+        {
+            anagramThings (start +1);
+            rotateThings (things, start);
+        }
+    }// anagramThings ()
+
+
+// (Вспомогательная.) Примеряем очередную перестановку к нашему рюкзаку и сравниваем с результатми предыдущих примерок.
+    static void tryOnBackpack ()
+    {
+        int loadMax = 0,
+            priceMax = 0;
+
+    // помещаем вещи в рюкзак в порядке их следования в массиве до тех пор, пока очередная вещь
+    // не сможет поместиться:
+        int i, n= things.length;
+        for (i=0;    i<n;    i++)
+        {
+            int w = things[i][0];
+
+            if (loadMax + w > capacity)
+                break;
+            priceMax += things[i][1];
+            loadMax += w;
+        }
+    // сохраняем результат примерки текущего порядка вещей к нащему рукзаку:
+        if (priceMax > maxprice)
+        {
+            maxprice = priceMax;
+            maxload = loadMax;
+            // Копируем поместившиеся вещи во временный массив:
+            load = Arrays.copyOfRange (things, 0, i+1);//new int[i+1][];
+            //while (i >= 0)
+            //    this.load[i] = things[i++];
+        }
+        fittings ++; //< для отладки
+    }// tryOnBackpack ()
+
+
+// (Вспомогательная.) Для части массива (от first+1 до конца) выполняется смещение на одну позицию к голове,
+// при этом элемент, находившийся в позиции first до смещения, становится последним элементом массива. (Без проверок.)
+    static void rotateThings (int[][] arr, int first)
+    {
+        int last = arr.length -1;
+        int[] f = arr[first];
+
+        while (first < last)
+            arr[first] = arr[++first];
+        arr[last] = f;
+        rearrangements ++; //< для отладки
+    }// rotateThings ()
+
+
+// (Вспомогательная.) Выводим на экран двуменрный массив data[][2]. (Без проверок.)
+    public static String displayThings (int[][] arr)
+    {
+        int size = arr.length;
+        StringBuilder sb = new StringBuilder("[");
+        int i = 0;
+        while (i < size)
+        {
+            sb.append(arr[i][0]).append('-').append(arr[i][1]);// ;//
+            if (++i < size)
+                sb.append(", ");
+        }
+        sb.append(']');
+        return sb.toString();
+    }// displayThings ()
+
+    @Override public String toString ()
+    {
+        return displayThings (things);
+    }
+//*/
