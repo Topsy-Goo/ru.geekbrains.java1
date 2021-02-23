@@ -64,8 +64,8 @@ public class Backpack<E extends Comparable <? super Thing>>
 // (Вспомогательная.) Примеряем очередную перестановку к нашему рюкзаку и сравниваем с результатми предыдущих примерок.
     private void tryOnBackpack (ArrayClass<Thing> ooo)
     {
-        int maxload = 0,
-            maxprice = 0;
+        int loadSum = 0,
+            priceSum = 0;
         ArrayClass<Thing> things = new ArrayClass<>();
 
     // помещаем вещи в рюкзак в порядке их следования в массиве до тех пор, пока очередная вещь
@@ -75,17 +75,17 @@ public class Backpack<E extends Comparable <? super Thing>>
             Thing t = ooo.getAt(i);
             int w = t.getWeight();
 
-            if (maxload + w > capacity)
+            if (loadSum + w > capacity)
                 break;
-            maxprice += t.getPrice();
-            maxload += w;
+            priceSum += t.getPrice();
+            loadSum += w;
             things.add(t);
         }
     // сохраняем результат примерки текущего порядка вещей к нащему рукзаку:
-        if (maxprice > this.maxprice)
+        if (priceSum > this.maxprice)
         {
-            this.maxprice = maxprice;
-            this.maxload = maxload;
+            this.maxprice = priceSum;
+            this.maxload = loadSum;
             this.load = things;
         }
         fittings ++;
