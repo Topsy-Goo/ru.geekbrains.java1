@@ -7,18 +7,18 @@ public class Test
 
     public static void main (String[] args)
     {
-        wordsCalculation();
-        //testSimplePhoneBook();
-        //testPhoneBook();
-    }// main ()
-
-
-    public static void wordsCalculation ()
-    {
         String text = "1. Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся)." +
                       " Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не" +
                       " считаем). Посчитать сколько раз встречается каждое слово.";
 
+        //wordsCalculation(text);
+        testSimplePhoneBook();
+        //testPhoneBook();
+    }// main ()
+
+
+    public static void wordsCalculation (String text)
+    {
         String[] sWords = text.split ("[\\p{Space}\\p{Punct}\\p{Cntrl}]");
         Map<String, Integer> hmapWords = new LinkedHashMap<> (sWords.length, 1.0F);
         List<String> list = new ArrayList<> (sWords.length); // исследоваие
@@ -78,7 +78,7 @@ public class Test
         System.out.println ("Выписка для Mike :\t" + book.get ("Mike"));
         System.out.println ("Выписка для Karl :\t" + book.get ("Karl"));
 
-        System.out.println ("\ndisplayRecords():");
+        System.out.println ("\ndisplayRecords() (поочерёдно выводим неформатированные запсси):");
         book.displayRecords();
     }// testSimplePhoneBook ()
 
