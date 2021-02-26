@@ -1,12 +1,10 @@
 package ru.geekbrains.AntonovDV.java2.lesson3;
 
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SimplePhoneBook
 {
-    private final Map<String, TreeSet<String>> book;
+    private final Map<String, Set<String>> book;
 
     public SimplePhoneBook ()
     {
@@ -19,24 +17,19 @@ public class SimplePhoneBook
         if (name == null || name.isBlank ())
             return;
 
-        TreeSet<String> ts;
         if (!book.containsKey (name))
-        {
-            ts = new TreeSet<> ();
-            book.put (name, ts);
-        }
-        else
-            ts = book.get (name);
+            book.put (name, new TreeSet<> ());
 
-        if (phone != null)   ts.add (phone);
+        if (phone != null && !phone.isBlank())
+            book.get(name).add (phone);
     }// add ()
 
 
-    public TreeSet<String> get (String name)
+    public Set<String> get (String name)
     {
         return (name != null && book.containsKey (name))
                 ? book.get (name)
-                : null;
+                : null;// Collections.emptySet();//< возвращаем null, если в книге нет даже такого имени
     }// get ()
 
 
