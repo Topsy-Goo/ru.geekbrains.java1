@@ -1,6 +1,7 @@
 package ru.geekbrains.AntonovDV.algorithms.lesson6;
 
 import java.security.InvalidParameterException;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -19,9 +20,9 @@ public class Test
     {
         int balansed = 0;
 
-        //for (int i=0;   i<CICLES;   i++)
+        for (int i=0;   i<CICLES;   i++)
         {
-            if (testTreeClass (AMOUNT, LEVELS))
+            if (testTreeClass (AMOUNT/*, LEVELS*/))
                 balansed ++;
         }
         double statistics = (double)balansed / (double)CICLES;
@@ -40,10 +41,10 @@ public class Test
     }// main ()
 
 
-    public static boolean testTreeClass (int amount, int levels)
+    public static boolean testTreeClass (int amount/*, int levels*/)
     {
         Random rnd = new Random ();
-        TreeClass<Integer> tci = new TreeClass<> (levels);
+        TreeClass<Integer> tci = new TreeClass<> (/*levels*/);
         boolean balanced;
 /*
         StringBuilder sb = new StringBuilder ("[");
@@ -54,6 +55,7 @@ public class Test
         {
             ssi.add (ai[i]);
             tci.add (ai[i]);
+            //tci.remove (ai[i]);
             sb.append (ai[i]);
             if (sz-1 > i) sb.append (", ");
         }
@@ -85,7 +87,7 @@ public class Test
         if (text == null)   throw new InvalidParameterException ();
 
         String[] as = text.split ("[\\p{Space}\\p{Punct}\\p{Cntrl}]");
-        TreeClass<String> tcs = new TreeClass<> (Integer.MAX_VALUE);
+        TreeClass<String> tcs = new TreeClass<> (/*Integer.MAX_VALUE*/);
 
         for (String key : as)
         {
