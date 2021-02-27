@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class TreeClass<E extends Comparable<? super E>> implements TreeInterface<E>
 {
-    private final int MAX_LEVEL; // применяем ограничения ДЗ на количество уровней
+    //private final int MAX_LEVEL; // применяем ограничения ДЗ на количество уровней
     private int size = 0;
     private Node root = null;
 
@@ -32,7 +32,7 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
         }//*/
     }// class Node
 
-    public TreeClass (int maxLevel) {   MAX_LEVEL = maxLevel;   } // применяем ограничения ДЗ на количество уровней
+    //public TreeClass (int maxLevel) {   MAX_LEVEL = maxLevel;   } // применяем ограничения ДЗ на количество уровней
 
 //---------------------------------- Интерфейсные методы
 
@@ -40,8 +40,8 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
     {
         boolean boolOk = false;
         Node node = root;
-        int cmp,
-            level = 1;
+        int cmp/*,
+            level = 1*/;
 
         if (root == null)
         {
@@ -61,12 +61,12 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
                     boolOk = true;
                     break;
                 }
-                if (level < MAX_LEVEL) // применяем ограничения ДЗ на количество уровней
-                {
+                //if (level < MAX_LEVEL) // применяем ограничения ДЗ на количество уровней
+                //{
                     node = node.rightHand;
-                    level ++;
-                }
-                else break;
+                //    level ++;
+                //}
+                //else break;
             }
             else
             {
@@ -78,12 +78,12 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
                     boolOk = true;
                     break;
                 }
-                if (level < MAX_LEVEL) // применяем ограничения ДЗ на количество уровней
-                {
+                //if (level < MAX_LEVEL) // применяем ограничения ДЗ на количество уровней
+                //{
                     node = node.leftHand;
-                    level ++;
-                }
-                else break;
+                //    level ++;
+                //}
+                //else break;
             }
         }//while
         return boolOk;
@@ -92,6 +92,10 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
     @Override public boolean contains (E v)   {   return findnode (v) != null;   }
 
     @Override public boolean remove (E v)
+    {
+        return doRemove (v); // (Вынесли тело метода remove() в метод с другим названием, чтобы его мог вызывать итератор.)
+    }// remove ()
+    private boolean doRemove (E v)
     {
         Node delete = findnode (v);
         if (delete == null) return false;
@@ -128,7 +132,7 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
         delete.value = null;//*/
 
         return _result != null;
-    }// remove ()
+    }// doRemove ()
 
 //---------------------------------- Вспомогательные
 
@@ -264,6 +268,12 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
 
                 return result;
             }// next ()
+
+            @Override public void remove ()
+            {
+            // Если вызов этого метода стал возможет, то это означает, удалять нужно текущий злемент (walker).
+                doRemove (next());
+            }// remove ()
         };
     }// iterator ()
 
@@ -326,6 +336,12 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
 
                 return result;
             }// next ()
+
+            @Override public void remove ()
+            {
+            // Если вызов этого метода стал возможет, то это означает, удалять нужно текущий злемент (walker).
+                doRemove (next());
+            }// remove ()
         };
     }// reversedIterator ()
 
@@ -364,7 +380,7 @@ public class TreeClass<E extends Comparable<? super E>> implements TreeInterface
         return sb.toString ();
     }// toString ()
 
-    public E getRootValue ()   {   return root.value;   }
+    public E getRootValue ()   {   return (root == null) ? null : root.value;   }
 
     public boolean isBalanced ()    {   return isBalanced (root);   }
 

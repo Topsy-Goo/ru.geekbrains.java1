@@ -10,8 +10,8 @@ public class Test
 
     public static void main(String[] args)
     {
-        System.out.println();
-        System.out.println (calcPowerOf (-2, -1));
+        //System.out.println();
+        //System.out.println (calcPowerOf (-2, -1));
         backpack (5, 7);
 
     }// main ()

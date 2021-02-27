@@ -32,9 +32,10 @@ public class Backpack<E extends Comparable <? super Thing>>
         if (ooo == null || start >= ooo.size())
             return;
 
-        int gap = ooo.size() - (start+1);   Thing t = ooo.getAt(start);
+        int gap = ooo.size() - (start+1);
+        Thing t = ooo.getAt(start);
 
-        if (gap == 0) //< для случаев, когда исходный массив содержит толькоодну вещь.
+        if (gap == 0) //< для случаев, когда исходный массив содержит только одну вещь.
         {
             //System.out.println (ooo);
             tryOnBackpack (ooo);
@@ -90,7 +91,6 @@ public class Backpack<E extends Comparable <? super Thing>>
         }
         fittings ++;
     }// tryOnBackpack ()
-
 
 
     private static final String tostringFormat =
