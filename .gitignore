@@ -1,5 +1,6 @@
 # Project exclude paths
 /target/
+/src/main/java/META-INF/MANIFEST.MF
 /desktop.ini
 /pom.xml
-/src/main/java/META-INF/MANIFEST.MF
+/src/main/java/ru/geekbrains/AntonovDV/algorithms/lesson5/заметки.txt

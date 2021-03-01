@@ -1,4 +1,4 @@
-package ru.geekbrains.AntonovDV.algorithms.lesson3.queue;
+package ru.geekbrains.AntonovDV.algorithms.lesson3_2.queue;
 
 public class QueuePriority<E extends Comparable<? super E>> implements QueueInterface<E>
 {

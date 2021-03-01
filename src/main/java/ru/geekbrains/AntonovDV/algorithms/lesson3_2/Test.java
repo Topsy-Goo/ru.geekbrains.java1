@@ -1,12 +1,12 @@
-package ru.geekbrains.AntonovDV.algorithms.lesson3;
+package ru.geekbrains.AntonovDV.algorithms.lesson3_2;
 
 
-import ru.geekbrains.AntonovDV.algorithms.lesson3.queue.DequeClass;
-import ru.geekbrains.AntonovDV.algorithms.lesson3.queue.DequeInterface;
-import ru.geekbrains.AntonovDV.algorithms.lesson3.queue.QueueInterface;
-import ru.geekbrains.AntonovDV.algorithms.lesson3.queue.QueuePriority;
-import ru.geekbrains.AntonovDV.algorithms.lesson3.stack.StackClass;
-import ru.geekbrains.AntonovDV.algorithms.lesson3.stack.StackInterface;
+import ru.geekbrains.AntonovDV.algorithms.lesson3_2.queue.DequeClass;
+import ru.geekbrains.AntonovDV.algorithms.lesson3_2.queue.DequeInterface;
+import ru.geekbrains.AntonovDV.algorithms.lesson3_2.queue.QueueInterface;
+import ru.geekbrains.AntonovDV.algorithms.lesson3_2.queue.QueuePriority;
+import ru.geekbrains.AntonovDV.algorithms.lesson3_2.stack.StackClass;
+import ru.geekbrains.AntonovDV.algorithms.lesson3_2.stack.StackInterface;
 
 public class Test
 {

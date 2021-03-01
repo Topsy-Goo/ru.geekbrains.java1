@@ -1,4 +1,4 @@
-package ru.geekbrains.AntonovDV.algorithms.lesson3.stack;
+package ru.geekbrains.AntonovDV.algorithms.lesson3_2.stack;
 
 public interface StackInterface<E>
 {
