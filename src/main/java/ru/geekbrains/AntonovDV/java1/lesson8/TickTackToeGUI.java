@@ -62,8 +62,9 @@ public class TickTackToeGUI extends JFrame
 	        {
 	            super.paintComponent (g);
 	            onRepaint (g);
-	            repaint();
-		        }
+                //System.out.print ("."); <-- демонстрация частоты отрисовки
+	            //repaint(); <-- Этот вызов запускает постоянную и чсатую отрисовку игрового поля
+		    }
 		};
 		this.add (jpGamefield, BorderLayout.CENTER);
 
