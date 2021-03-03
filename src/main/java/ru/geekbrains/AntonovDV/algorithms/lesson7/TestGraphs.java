@@ -35,6 +35,9 @@ public class TestGraphs
         graph.display ();
 
         graph.bfs2 ("Москва","Воронеж");
+        graph.bfs2 ("Москва","Саратов");
+        graph.bfs2 ("Липецк","Тамбов");
+        graph.bfs2 ("Рязань","Курск");
         graph.unlinkAllVertices();
 
     }// testGraph ()

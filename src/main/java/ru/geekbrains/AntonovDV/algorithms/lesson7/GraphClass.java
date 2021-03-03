@@ -100,7 +100,7 @@ public class GraphClass implements GraphInterface
             {
                 vfrom.friendlist [vto.index] = vto;
                 vto.friendlist [vfrom.index] = vfrom;
-                vto.prev = vfrom;   //< только для ДЗ
+                //vto.prev = vfrom;   //< только для ДЗ
                 boolOk = true;
             }
         }
@@ -118,9 +118,9 @@ public class GraphClass implements GraphInterface
 
         if (vstart != null && vend != null)
         {
-            unvisitAllVertices ();
+            unvisitAllVertices2 ();
             searchBreadth2 (vstart, vend);
-            unvisitAllVertices ();
+            unvisitAllVertices2 ();
         }
     }// bfs2 ()
 
@@ -138,8 +138,11 @@ public class GraphClass implements GraphInterface
             for (Vertex friend : v.friendlist)
             {
                 if (friend != null && friend.visited == NOT_VISITED)
+                {
+                    friend.prev = v;
                     if (treatVertexBfs2 (friend, qv, vend))
                         return;
+                }
             }
         }
     }// searchBreadth2 ()
@@ -204,6 +207,18 @@ public class GraphClass implements GraphInterface
             }
             System.out.println (sb);
     }// roundTrip ()
+
+// (Вспомогательный метод; сбрасывает атрибут Vertex.visited у всех вершин графа.)
+    private void unvisitAllVertices2 ()   //< вариант для ДЗ
+    {
+        for (Map.Entry<String, Vertex> entry : vertices.entrySet())
+        {
+            Vertex v = entry.getValue();
+            v.visited = NOT_VISITED;
+            v.prev = null;
+        }
+    }// unvisitAllVertices2 ()
+
 
 //-------------------- Нижеследующие методы не имеют отношение к ДЗ ---------------------
 
