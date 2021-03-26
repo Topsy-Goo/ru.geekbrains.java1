@@ -11,6 +11,7 @@ public class MainApp
 {
 
 //  1.   Написать метод, который меняет два элемента массива местами (массив может быть любого ссылочного типа).
+//      (При разборе ДЗ преподаватель сказал, что женерики здесь не нужны.)
     public static <T> void swapObjects (T[] array, int i, int j)
     {
         if (array != null  &&
@@ -77,9 +78,11 @@ public class MainApp
         System.out.println ("\nИллюстрация к заданию 3");
         Box<Apple> applebox = new Box<>();
         Box<Orange> orangebox = new Box<>();
+        Apple apple = new Apple();
+        Orange orange = new Orange();
 
-        Apple.fillBox (applebox, 4);    //< вызывает Box.add(new Apple()) N раз
-        Orange.fillBox (orangebox, 5);  //< вызывает Box.add(new Orange()) N раз
+        applebox.fillBox (apple, 4);    //< вызывает Box.add(new Apple()) N раз
+        orangebox.fillBox (orange, 5);  //< вызывает Box.add(new Orange()) N раз
         //Apple.fillBox (orangebox, 2); < сыпать апельсины к яблокам не позволяет компилятор
 
             System.out.printf ("\napplebox : %s (quantity %d, weight = %f)",
@@ -89,11 +92,11 @@ public class MainApp
 
             System.out.printf ("\n\ncomparison (orangebox vs applebox) : %b\n", orangebox.compare(applebox));
 
-        Apple.fillBox (applebox, -2);
+        applebox.fillBox (apple, -2);
             System.out.printf ("\napplebox : %s (quantity %d)", applebox, applebox.size());
 
         Box<Apple> applebox2 = new Box<>();
-        Apple.fillBox (applebox2, 3);
+        applebox2.fillBox (apple, 3);
             System.out.printf ("\napplebox2 : %s (quantity %d)", applebox2, applebox2.size());
 
         applebox.moveTo(applebox2);
