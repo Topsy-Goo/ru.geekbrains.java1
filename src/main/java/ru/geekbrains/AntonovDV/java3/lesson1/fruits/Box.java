@@ -43,6 +43,7 @@ public class Box<T extends Fruit>
 
         // doubles и floats сравниваем только при пом. разности и с использованием «допуска»:
         return getWeight() - anotherBox.getWeight() <= DOUBLE_WEIGHT_COMPARISON_TOLERANCE;
+        // В Double.equals() также используется оператор ==.
     }
 
 
