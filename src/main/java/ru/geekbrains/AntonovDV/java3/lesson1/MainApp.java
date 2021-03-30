@@ -12,7 +12,7 @@ public class MainApp
 
 //  1.   Написать метод, который меняет два элемента массива местами (массив может быть любого ссылочного типа).
 //      (При разборе ДЗ преподаватель сказал, что женерики здесь не нужны. Можно было обойтись и классом Object.)
-    public static <T> void swapObjects (T[] array, int i, int j)
+    public static void swapObjects (Object[] array, int i, int j)
     {
         if (array != null  &&
             i >= 0  &&
@@ -20,7 +20,7 @@ public class MainApp
             array.length > i  &&
             array.length > j)
         {
-            T tmp = array[i];
+            Object tmp = array[i];
             array[i] = array[j];
             array[j] = tmp;
         }
@@ -31,7 +31,7 @@ public class MainApp
     {
         return (array != null)
                ? new ArrayList<>(Arrays.asList(array))
-               : null;
+               : new ArrayList<>();
     }// arrayToArrayList ()
 
 
