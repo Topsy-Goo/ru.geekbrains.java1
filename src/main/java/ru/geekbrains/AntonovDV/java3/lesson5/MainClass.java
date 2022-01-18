@@ -2,6 +2,7 @@ package ru.geekbrains.AntonovDV.java3.lesson5;
 
 public class MainClass
 {
+// FINISH_LOCK - означает, что код добавлен/исправлен после разбора ДЗ (просто меняем финиш с семафора на лок)
     //public static Semaphore finishLine; //< финишная черта    //< FINISH_LOCK
     public static final int CARS_COUNT = 4;
 
@@ -28,4 +29,3 @@ public class MainClass
         System.out.println (race.getWinner() + " победил!");  //< FINISH_LOCK
     }
 }
-// FINISH_LOCK - означает, что код добавлен/исправлен после разбора ДЗ (просто меняем финиш с семафора на лок)
